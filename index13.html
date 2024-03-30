@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Object Animation</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+    #object {
+        width: 100px;
+        height: 100px;
+        background-color:brown;
+        position: absolute;
+    }
+</style>
+</head>
+<body>
+
+<button id="squareBtn">Прямокутник</button>
+<button id="triangleBtn">Трикутник</button>
+<button id="expandBtn">Розширення</button>
+
+<div id="object"></div>
+
+<script>
+$(document).ready(function() {
+    const object = $('#object');
+
+    $('#squareBtn').click(function() {
+        object.animate({top: '0px'}, 1000)
+              .animate({left: '200px'}, 1000)
+              .animate({top: '200px'}, 1000)
+              .animate({left: '0px'}, 1000);
+    });
+
+    $('#triangleBtn').click(function() {
+        object.stop().animate({left: '200px', top: '0px'}, 1000)
+               .animate({left: '400px', top: '200px'}, 1000)
+               .animate({left: '0px', top: '200px'}, 1000)
+               .animate({left: '200px', top: '0px'}, 1000);
+    });
+
+    let isExpanded = false;
+    $('#expandBtn').click(function() {
+        if (!isExpanded) {
+            object.stop().animate({width: '400px', height: '400px', opacity: '1'}, 1000);
+            isExpanded = true;
+        } else {
+            object.stop().animate({width: '50px', height: '50px', opacity: '0'}, 1000);
+            isExpanded = false;
+        }
+    });
+});
+</script>
+
+</body>
+</html>
